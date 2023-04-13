@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Results summary component</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    @font-face {
+      font-family: HankenGrotesk;
+      src: url("assets/fonts/HankenGrotesk-VariableFont_wght.ttf");
+    }
+    *{
+      font-family: HankenGrotesk;
+      box-sizing: border-box;
+    }
+    .attribution { 
+      font-size: 11px; 
+      text-align: center;
+      position: absolute;
+      bottom:0;
+      right:0;
+    }
+
+    .attribution a { 
+      color: hsl(228, 45%, 44%); 
+    }
+
+    body{
+      height: 100vh;
+      display:flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    main{
+      display:flex;
+      /* border:2px solid black; */
+      border-radius:25px;
+      box-shadow: 0px 20px 30px rgb(0, 0, 0, 0.1);
+    }
+
+
+    main .left{
+      text-align:center;
+      /* background: hsl(252, 100%, 67%); */
+      /* background: hsl(241, 81%, 54%); */
+      background: linear-gradient(to bottom, hsl(252, 100%, 67%), hsl(241, 81%, 54%));
+      width:320px;
+      border-radius: 25px;
+      padding:15px 50px 30px 50px;
+    }
+
+    main .left .score{
+      width:170px;
+      height: 170px;
+      border-radius: 85px;
+      background: linear-gradient(to bottom, hsla(256, 72%, 46%, 0.8), hsla(241, 72%, 46%, 0));
+      margin:auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin:30px auto;
+    }
+
+    .score h1{
+      font-size: 50px;
+    }
+
+
+    .score h1::after{
+      content:"of 100";
+      font-size: 15px;
+      display: block;
+      color:hsl(241, 100%, 89%);
+    }
+
+    main .left h1, .left h2{
+      color: hsl(0, 0%, 100%);
+    }
+
+    .left h3, .left p{
+      color: hsl(241, 100%, 89%)
+      /* background-color: blue; */
+    }
+
+    .left h2{
+      margin-bottom:15px;
+    }
+    .left p{
+      margin-top:0;
+    }
+
+
+    /* Main right */
+
+    main .right{
+      width: 350px;
+      padding:15px 30px;
+    }
+
+    .right .box{
+      display: flex;
+      height: 50px;
+      border-radius:12px;
+      margin-bottom: 15px;
+      font-size: 18px;
+    }
+
+    /* Outer Border radius */
+    .right .reaction{
+      background-color: hsl(0, 100%, 94%);
+    }
+
+    .right .memory{
+      background-color: hsl(39, 100%, 92%)
+    }
+
+    .right .verbal{
+      background-color: hsl(166, 100%, 44%);
+    }
+
+    .right .visual{
+      background-color: hsl(234, 100%, 60%);
+    }
+
+    /* ---- end of outer border radius --- */
+
+
+
+    /* inner box */
+    .right .box .item-reaction{
+      display: flex;
+      background-color: hsl(0, 100%, 98%);
+      height: 50px;
+      width: 100%;
+      border-radius: 15px;
+      align-items: center;
+      color:hsl(0, 100%, 67%);
+      font-weight: 600;
+      gap:5px;
+      padding:0px 10px
+    }
+
+    .item-memory{
+      display: flex;
+      background-color: hsl(39, 100%, 97%);
+      height: 50px;
+      width: 100%;
+      border-radius: 15px;
+      align-items: center;
+      color:hsl(39, 100%, 56%);
+      font-weight: 600;
+      gap:5px;
+      padding:0px 10px
+    }
+
+    .right .box .item-verbal{
+      display: flex;
+      background-color: hsl(166, 100%, 97%);
+      height: 50px;
+      width: 100%;
+      border-radius: 12px;
+      align-items: center;
+      color:hsl(166, 100%, 37%);
+      font-weight: 600;
+      gap:5px;
+      padding:0px 10px
+    }
+
+    .right .box .item-visual{
+      display: flex;
+      background-color: hsl(234, 100%, 98%);
+      height: 50px;
+      width: 100%;
+      border-radius: 12px;
+      align-items: center;
+      color:hsl(234, 85%, 45%);
+      font-weight: 600;
+      gap:5px;
+      padding:0px 10px
+    }
+
+    /* --- end of inner box --- */
+
+    .text-score{
+      display: flex;
+      justify-content: flex-end;
+      width: 100%;
+    }
+
+    strong{
+      color:black;
+    }
+
+    span{
+      color:darkgrey;
+    }
+
+    i{
+      margin-right: 5px;
+    }
+
+    i img{
+      width: 15px;
+    }
+
+    /* Button */
+    button{
+      padding: 15px 0px;
+      width: 100%;
+      background-color: hsl(224, 30%, 27%);
+      border-radius: 30px;
+      color: hsl(0, 0%, 100%);
+      font-size: 18px;
+      border: none;
+      font-weight: 600;
+      margin:20px 0px 25px 0;
+      cursor:pointer;
+    }
+
+    button:active{
+      background: linear-gradient(to bottom, hsl(252, 100%, 67%), hsl(241, 81%, 54%));
+    }
+    /* Media responsive */
+
+    @media screen and (max-width:785px) {
+      
+      body{
+        margin:0;
+        padding:0;
+        height: 100%;
+        position: relative;
+      }
+
+      main{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      main .left{
+        padding:15px 50px;
+        width: 100%;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+      }
+
+      .attribution{
+        display: none;
+      }
+
+      .right h3{
+        margin-top:0;
+      }
+
+      button{
+        margin:5px 0;
+      }
+
+      .left h2{
+        margin-top:-20px;
+      }
+
+    }
+
+  </style>
+</head>
+<body>
+    <main>
+        <div class="left">
+            <h3>Your Result</h3>
+            <div class="score">
+              <h1>76</h1>
+            </div>
+            <h2>Great</h2>
+            <p>You scored higher than 65% of the people who have taken these tests.</p>
+        </div>
+
+        <div class="right">
+            <h3>Summary</h3>
+            <div class="box reaction">
+              <div class="item-reaction">
+                <i><img src="assets/images/icon-reaction.svg" alt="R"></i>
+                <p>Reaction</p>
+                <div class="text-score">
+                  <p><strong>80</strong> <span>/ 100</span></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="box memory">
+              <div class="item-memory">
+                <i><img src="assets/images/icon-memory.svg" alt="R"></i>
+                <p>Memory</p>
+                <div class="text-score">
+                  <p><strong>92</strong> <span>/ 100</span></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="box verbal">
+              <div class="item-verbal">
+                <i><img src="assets/images/icon-verbal.svg" alt="R"></i>
+                <p>Verbal</p>
+                <div class="text-score">
+                  <p><strong>61</strong> <span>/ 100</span></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="box visual">
+              <div class="item-visual">
+                <i><img src="assets/images/icon-visual.svg" alt="R"></i>
+                <p>Visual</p>
+                <div class="text-score">
+                  <p><strong>72</strong> <span>/ 100</span></p>
+                </div>
+              </div>
+            </div>
+            <button type="button">Continue</button>
+        </div>
+    </main>
+
+  
+    <footer class="attribution">
+      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+      Coded by <a href="https://www.frontendmentor.io/profile/alansadewa" target="_blank">Alan Sadewa</a>.
+    </footer>
+</body>
+</html>
